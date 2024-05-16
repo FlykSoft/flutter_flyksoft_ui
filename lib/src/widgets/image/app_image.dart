@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../flyksoft_ui.dart';
-import '../../models/image_clip.dart';
-import '../conditional_widget.dart';
-import 'image_place_holder.dart';
 
-class RectangleImage extends StatelessWidget {
+class AppImage extends StatelessWidget {
   final String? url;
   final double? width;
   final double? height;
@@ -19,7 +16,7 @@ class RectangleImage extends StatelessWidget {
   final bool useCache;
   final ImageSize networkImageSize;
 
-  const RectangleImage({
+  const AppImage({
     this.url,
     this.networkImageSize = ImageSize.medium,
     this.assetPath,
