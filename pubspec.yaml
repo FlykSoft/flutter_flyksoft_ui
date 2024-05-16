@@ -1,6 +1,6 @@
 name: flyksoft_ui
 description: "A new Flutter package project."
-version: 1.0.0+1
+version: 1.0.1+1
 homepage: 'none'
 publish_to: 'none'
 
@@ -17,12 +17,12 @@ dependencies:
   infinite_scroll_pagination: ^4.0.0
   core_feature:
     git:
-      url: https://github.com/FlykSoft/flutter_core_feature.git
-      ref: v1.0.0
+      url: git@github.com:FlykSoft/flutter_core_feature.git
+      ref: v1.0.2
   pagination_service:
     git:
-      url: https://github.com/FlykSoft/flutter_pagination_service.git
-      ref: v1.0.0
+      url: git@github.com:FlykSoft/flutter_pagination_service.git
+      ref: v1.0.1
 
 dev_dependencies:
   flutter_test:
