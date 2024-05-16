@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flyksoft_ui/src/localization/flyksoft_ui_arabic_localization_delegate.dart';
 import 'package:flyksoft_ui/src/localization/flyksoft_ui_english_localization_delegate.dart';
 
 import 'flyksoft_ui_localization_delegate.dart';
@@ -7,6 +8,7 @@ class FlyksoftUILocalization {
   static final Map<String, FlyksoftUILocalizationDelegate>
       _registeredLocalizations = {
     'en': const FlyksoftUIEnglishLocalizationDelegate(),
+    'ar': const FlyksoftUIArabicLocalizationDelegate(),
   };
 
   static void register(

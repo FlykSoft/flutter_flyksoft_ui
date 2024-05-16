@@ -14,4 +14,16 @@ abstract class FlyksoftUILocalizationDelegate {
   String get cancel;
 
   String get unknownFailureMessage;
+
+  String get seeMore;
+
+  String get seeLess;
+
+  String get successfulOperation;
+
+  String get unsuccessfulOperation;
+
+  String get select;
+
+  String get items;
 }

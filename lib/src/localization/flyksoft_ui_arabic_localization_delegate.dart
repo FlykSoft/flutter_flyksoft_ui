@@ -25,4 +25,22 @@ class FlyksoftUIArabicLocalizationDelegate
   @override
   String noItemFoundWithItemName(String itemName) =>
       'لم يتم العثور على $itemName';
+
+  @override
+  String get seeLess => 'شاهد المزيد';
+
+  @override
+  String get seeMore => 'انظر أقل';
+
+  @override
+  String get successfulOperation => 'عملية ناجحة';
+
+  @override
+  String get unsuccessfulOperation => 'عملية غير ناجحة';
+
+  @override
+  String get items => 'أغراض';
+
+  @override
+  String get select => 'يختار';
 }
