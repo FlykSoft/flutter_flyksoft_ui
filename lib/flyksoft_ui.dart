@@ -26,6 +26,7 @@ export 'src/widgets/image/app_image.dart';
 export 'src/widgets/image/app_network_image.dart';
 export 'src/widgets/image/image_failure_widget.dart';
 export 'src/widgets/image/image_place_holder.dart';
+export 'src/widgets/label_value_widget.dart';
 export 'src/widgets/loading_widget.dart';
 export 'src/widgets/not_found_widget.dart';
 export 'src/widgets/one_line_sheet_header_widget.dart';
