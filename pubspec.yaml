@@ -21,12 +21,12 @@ dependencies:
   top_snackbar_flutter: ^3.0.0+1
   core_feature:
     git:
-      url: git@github.com:FlykSoft/flutter_core_feature.git
-      ref: v1.0.2
+      url: https://github.com/FlykSoft/flutter_core_feature.git
+      ref: v1.0.4
   pagination_service:
     git:
-      url: git@github.com:FlykSoft/flutter_pagination_service.git
-      ref: v1.0.1
+      url: https://github.com/FlykSoft/flutter_pagination_service.git
+      ref: v1.0.3
 
 dev_dependencies:
   flutter_test:
