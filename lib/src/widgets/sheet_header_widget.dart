@@ -45,7 +45,7 @@ class SheetHeaderWidget extends StatelessWidget {
                     splashRadius: 20,
                     padding: EdgeInsets.zero,
                     iconSize: 24,
-                    onPressed: onClosePressed,
+                    onPressed: onClosePressed ?? Navigator.of(context).pop,
                   ),
                 ],
               ),

@@ -26,7 +26,7 @@ class OneLineSheetHeaderWidget extends StatelessWidget {
               start: FlyksoftTheme.of(context)?.horizontalPaddingValue ?? 0,
               end: FlyksoftTheme.of(context)?.horizontalPaddingValue ?? 0,
               bottom: 8,
-              top: 8,
+              top: 12,
             ),
         child: Row(
           children: [
@@ -55,7 +55,7 @@ class OneLineSheetHeaderWidget extends StatelessWidget {
                 splashRadius: 20,
                 padding: EdgeInsets.zero,
                 iconSize: 24,
-                onPressed: onClosePressed,
+                onPressed: onClosePressed ?? Navigator.of(context).pop,
               ),
           ],
         ),
