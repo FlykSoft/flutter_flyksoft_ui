@@ -84,24 +84,21 @@ class AppTextField extends StatefulWidget {
 }
 
 class _AppTextFieldState extends State<AppTextField> {
-  late TextEditingController _controller;
   bool _showClearIcon = false;
 
   @override
   void initState() {
-    _controller = widget.controller ?? TextEditingController();
     _showClearIcon = _shouldShowClearIcon();
-    if (widget.showClearIcon) {
-      _controller.addListener(_showClearIconListener);
+    if (widget.controller != null) {
+      widget.controller!.addListener(_showClearIconListener);
     }
     super.initState();
   }
 
   @override
   void dispose() {
-    if (widget.controller == null) {
-      _controller.removeListener(_showClearIconListener);
-      _controller.dispose();
+    if (widget.controller != null) {
+      widget.controller!.removeListener(_showClearIconListener);
     }
     super.dispose();
   }
@@ -110,17 +107,25 @@ class _AppTextFieldState extends State<AppTextField> {
   void didUpdateWidget(covariant AppTextField oldWidget) {
     if (widget.controller != null &&
         widget.controller != oldWidget.controller) {
-      _controller = widget.controller!;
-      _controller.removeListener(_showClearIconListener);
-      if (widget.showClearIcon) {
-        _controller.addListener(_showClearIconListener);
-      }
+      widget.controller!.removeListener(_showClearIconListener);
+      widget.controller!.addListener(_showClearIconListener);
+      setState(() {
+        _showClearIcon = _shouldShowClearIconByController();
+      });
+    } else if (widget.initialValue != oldWidget.initialValue) {
+      setState(() {
+        _showClearIcon = _shouldShowClearIconByInitialValue();
+      });
+    } else if (widget.showClearIcon != oldWidget.showClearIcon) {
+      setState(() {
+        _showClearIcon = widget.showClearIcon;
+      });
     }
     super.didUpdateWidget(oldWidget);
   }
 
   void _showClearIconListener() {
-    final bool value = _shouldShowClearIcon();
+    final bool value = _shouldShowClearIconByController();
     if (value != _showClearIcon && mounted) {
       setState(() {
         _showClearIcon = value;
@@ -128,8 +133,23 @@ class _AppTextFieldState extends State<AppTextField> {
     }
   }
 
-  bool _shouldShowClearIcon() =>
-      widget.showClearIcon && _controller.text.isNotEmpty;
+  bool _shouldShowClearIcon() {
+    if (widget.controller != null) {
+      return _shouldShowClearIconByController();
+    } else if (widget.initialValue != null) {
+      return _shouldShowClearIconByInitialValue();
+    } else {
+      return widget.showClearIcon;
+    }
+  }
+
+  bool _shouldShowClearIconByController() =>
+      widget.showClearIcon &&
+      (widget.controller != null && widget.controller!.text.isNotEmpty);
+
+  bool _shouldShowClearIconByInitialValue() =>
+      widget.showClearIcon &&
+      (widget.initialValue != null && widget.initialValue!.isNotEmpty);
 
   InputBorder? get _border =>
       widget.border ?? Theme.of(context).inputDecorationTheme.border;
@@ -144,7 +164,7 @@ class _AppTextFieldState extends State<AppTextField> {
       onChanged: widget.onChanged,
       enabled: widget.enabled,
       maxLines: widget.maxLines ?? 1,
-      controller: _controller,
+      controller: widget.controller,
       maxLength: widget.maxLength,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: widget.keyboardType,
@@ -167,7 +187,7 @@ class _AppTextFieldState extends State<AppTextField> {
         suffixIcon: _showClearIcon
             ? _SuffixIconWithClearButton(
                 onClear: () {
-                  _controller.clear();
+                  widget.controller?.clear();
                   widget.onChanged?.call('');
                 },
                 showClearIcon: _showClearIcon,
