@@ -144,7 +144,7 @@ class _AppTextFieldState extends State<AppTextField> {
       onChanged: widget.onChanged,
       enabled: widget.enabled,
       maxLines: widget.maxLines ?? 1,
-      controller: widget.controller,
+      controller: _controller,
       maxLength: widget.maxLength,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: widget.keyboardType,
@@ -211,13 +211,13 @@ class _SuffixIconWithClearButton extends StatelessWidget {
       : Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            suffixIcon!,
-            SizedBox(
-              width: suffixIconSpacing ?? defaultSuffixIconSpacing,
-            ),
             _ClearIconButton(
               onPressed: onClear,
             ),
+            SizedBox(
+              width: suffixIconSpacing ?? defaultSuffixIconSpacing,
+            ),
+            suffixIcon!,
           ],
         );
 
@@ -235,7 +235,7 @@ class _ClearIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => IconButton(
         visualDensity: VisualDensity.compact,
-        splashRadius: 8,
+        splashRadius: 16,
         padding: EdgeInsets.zero,
         iconSize: 16,
         constraints: const BoxConstraints(),
