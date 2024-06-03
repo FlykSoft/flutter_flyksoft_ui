@@ -10,6 +10,7 @@ export 'src/models/picker_condition_model.dart';
 export 'src/theme/flyksoft_theme.dart';
 export 'src/theme/flyksoft_theme_data.dart';
 export 'src/utils/debouncer.dart';
+export 'src/utils/snack_bar_utils.dart';
 export 'src/widgets/app_button.dart';
 export 'src/widgets/app_price_text.dart';
 export 'src/widgets/app_text.dart';
