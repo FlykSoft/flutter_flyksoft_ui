@@ -82,8 +82,11 @@ class AppImage extends StatelessWidget {
       conditionBuilder: (child) => switch (imageClip) {
         ImageClipRRect() => ClipRRect(
             borderRadius: (imageClip as ImageClipRRect).borderRadius,
+            child: child,
           ),
-        ImageClipOval() => const ClipOval(),
+        ImageClipOval() => ClipOval(
+            child: child,
+          ),
         ImageNoClip() => child,
       },
       child: ConditionalWidget(
