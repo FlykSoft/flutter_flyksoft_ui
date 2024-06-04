@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 
 import '../../../flyksoft_ui.dart';
 import '../../utils/conditional_picker_mixin.dart';
+import '../dropdowns/dropdown_form_widget.dart';
 
 class AppDatePicker extends AppStatefulFormWidget<DateTime> {
   const AppDatePicker({
@@ -12,16 +13,12 @@ class AppDatePicker extends AppStatefulFormWidget<DateTime> {
     this.lastDate,
     this.validator,
     this.formatter,
-    this.padding,
-    this.textStyle,
     this.selectableDayPredicate,
     this.conditionBuilder,
     this.defaultValue,
-    this.showClearIcon = true,
+    this.style,
     this.enabled = true,
-    this.flexFit = FlexFit.tight,
     this.hintText,
-    this.mainAxisSize = MainAxisSize.max,
     super.key,
   });
 
@@ -31,15 +28,11 @@ class AppDatePicker extends AppStatefulFormWidget<DateTime> {
   final String? Function(String? value)? validator;
   final String? hintText;
   final String Function(DateTime dateTime)? formatter;
-  final MainAxisSize mainAxisSize;
-  final EdgeInsetsGeometry? padding;
-  final FlexFit flexFit;
-  final TextStyle? textStyle;
   final bool enabled;
   final bool Function(DateTime day)? selectableDayPredicate;
   final List<PickerConditionModel> Function()? conditionBuilder;
   final DateTime? defaultValue;
-  final bool showClearIcon;
+  final AppDropdownThemeData? style;
 
   @override
   AppFormState<AppDatePicker, DateTime> createState() =>
@@ -49,24 +42,19 @@ class AppDatePicker extends AppStatefulFormWidget<DateTime> {
 class _AppDatePickerV2State extends AppFormState<AppDatePicker, DateTime>
     with ConditionalPickerMixin {
   @override
-  Widget build(final BuildContext context) => DropdownForm<DateTime>(
+  Widget build(final BuildContext context) => DropdownFormWidget<DateTime>(
         itemAsString: (item) => item != null
             ? widget.formatter?.call(item) ?? DateFormat.yMMMd().format(item)
             : null,
         onTap: widget.enabled ? maybeShowPicker : null,
         validator: widget.validator,
-        mainAxisSize: widget.mainAxisSize,
-        padding: widget.padding,
         hintText: widget.hintText,
-        textStyle: widget.textStyle,
         value: widget.value,
         key: formFieldKey,
-        fillColor: widget.enabled
-            ? Theme.of(context).colorScheme.surfaceVariant
-            : Theme.of(context).disabledColor,
         onClear: () => widget.onChanged(widget.defaultValue),
         defaultValue: widget.defaultValue,
-        showClearIcon: widget.showClearIcon,
+        style: widget.style,
+        enabled: widget.enabled,
       );
 
   Future<void> _showDatePicker() async {

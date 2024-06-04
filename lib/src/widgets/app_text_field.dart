@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../flyksoft_ui.dart';
+
 class AppTextField extends StatefulWidget {
   const AppTextField({
     this.controller,
@@ -37,7 +39,7 @@ class AppTextField extends StatefulWidget {
     this.onFieldSubmitted,
     this.hintStyle,
     this.showClearIcon = true,
-    this.autoFocus,
+    this.autoFocus = false,
     this.suffixIconSpacing,
     super.key,
   });
@@ -59,7 +61,7 @@ class AppTextField extends StatefulWidget {
   final Color? shadowColor;
   final double? borderRadius;
   final bool enabled;
-  final bool? autoFocus;
+  final bool autoFocus;
   final String? initialValue;
   final void Function(String? value)? onChanged;
   final void Function()? onTap;
@@ -158,7 +160,7 @@ class _AppTextFieldState extends State<AppTextField> {
   Widget build(final BuildContext context) {
     final border = _border;
     return TextFormField(
-      autofocus: widget.autoFocus ?? false,
+      autofocus: widget.autoFocus,
       focusNode: widget.focusNode,
       initialValue: widget.initialValue,
       onChanged: widget.onChanged,
@@ -253,17 +255,21 @@ class _ClearIconButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   @override
-  Widget build(BuildContext context) => IconButton(
-        visualDensity: VisualDensity.compact,
-        splashRadius: 16,
-        padding: EdgeInsets.zero,
-        iconSize: 16,
-        constraints: const BoxConstraints(),
-        onPressed: onPressed,
-        icon: Icon(
-          Icons.clear_outlined,
-          size: 16,
-          color: Theme.of(context).colorScheme.onSurfaceVariant,
-        ),
-      );
+  Widget build(BuildContext context) {
+    final effectiveStyle = FlyksoftTheme.of(context)?.appDropdownThemeData ??
+        const AppDropdownThemeData();
+    return IconButton(
+      visualDensity: VisualDensity.compact,
+      splashRadius: 16,
+      padding: EdgeInsets.zero,
+      iconSize: 16,
+      constraints: const BoxConstraints(),
+      onPressed: onPressed,
+      icon: Icon(
+        Icons.clear_outlined,
+        size: effectiveStyle.clearIconSize,
+        color: effectiveStyle.clearIconColor,
+      ),
+    );
+  }
 }

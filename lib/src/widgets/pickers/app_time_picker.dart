@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
 
 import '../../../flyksoft_ui.dart';
-import '../../models/picker_condition_model.dart';
 import '../../utils/conditional_picker_mixin.dart';
+import '../dropdowns/dropdown_form_widget.dart';
 
 class AppTimePicker extends AppStatefulFormWidget<TimeOfDay> {
   const AppTimePicker({
     required this.onChanged,
     super.value,
     this.validator,
-    this.mainAxisSize = MainAxisSize.max,
-    this.flexFit = FlexFit.tight,
-    this.textStyle,
     this.formatter,
-    this.padding,
     this.conditionBuilder,
     this.defaultValue,
-    this.showClearIcon = true,
     this.enabled = true,
     this.hintText,
+    this.style,
     super.key,
   });
 
@@ -26,14 +22,10 @@ class AppTimePicker extends AppStatefulFormWidget<TimeOfDay> {
   final String? Function(String? value)? validator;
   final String? hintText;
   final String Function(TimeOfDay time)? formatter;
-  final MainAxisSize mainAxisSize;
-  final EdgeInsetsGeometry? padding;
-  final FlexFit flexFit;
-  final TextStyle? textStyle;
   final bool enabled;
   final List<PickerConditionModel> Function()? conditionBuilder;
   final TimeOfDay? defaultValue;
-  final bool showClearIcon;
+  final AppDropdownThemeData? style;
 
   @override
   AppFormState<AppTimePicker, TimeOfDay> createState() => _AppTimePickerState();
@@ -42,24 +34,19 @@ class AppTimePicker extends AppStatefulFormWidget<TimeOfDay> {
 class _AppTimePickerState extends AppFormState<AppTimePicker, TimeOfDay>
     with ConditionalPickerMixin {
   @override
-  Widget build(final BuildContext context) => DropdownForm<TimeOfDay>(
+  Widget build(final BuildContext context) => DropdownFormWidget<TimeOfDay>(
         itemAsString: (item) => item != null
             ? widget.formatter?.call(item) ?? item.format(context)
             : null,
         validator: widget.validator,
         onTap: widget.enabled ? maybeShowPicker : null,
-        mainAxisSize: widget.mainAxisSize,
-        padding: widget.padding,
         hintText: widget.hintText,
-        textStyle: widget.textStyle,
         value: widget.value,
         key: formFieldKey,
-        fillColor: widget.enabled
-            ? Theme.of(context).colorScheme.surfaceVariant
-            : Theme.of(context).disabledColor,
         onClear: () => widget.onChanged(widget.defaultValue),
         defaultValue: widget.defaultValue,
-        showClearIcon: widget.showClearIcon,
+        style: widget.style,
+        enabled: widget.enabled,
       );
 
   Future<void> _showTimePicker() async {
