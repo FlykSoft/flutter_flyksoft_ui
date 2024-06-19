@@ -10,6 +10,7 @@ class RetryWidget extends StatelessWidget {
     this.message,
     this.padding,
     this.textStyle,
+    this.isLoading = false,
     super.key,
   });
 
@@ -17,6 +18,7 @@ class RetryWidget extends StatelessWidget {
   final String? message;
   final EdgeInsetsGeometry? padding;
   final TextStyle? textStyle;
+  final bool isLoading;
 
   @override
   Widget build(final BuildContext context) => Padding(
@@ -38,6 +40,7 @@ class RetryWidget extends StatelessWidget {
               AppButton.filled(
                 onPressed: onRetry,
                 text: FlyksoftUILocalization.of(context).retry,
+                showLoading: isLoading,
                 style: ElevatedButtonTheme.of(context).style?.copyWith(
                       padding: const MaterialStatePropertyAll(
                         EdgeInsets.only(
