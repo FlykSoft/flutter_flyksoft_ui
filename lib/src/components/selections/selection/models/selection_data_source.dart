@@ -10,13 +10,13 @@ class SelectionLocalDataSource<T> extends SelectionDataSource<T> {
 }
 
 class SelectionRemoteDataSource<T> extends SelectionDataSource<T> {
-  final Future<Either<ApiFailure, List<T>>> Function() fetchItems;
+  final Future<Either<BaseFailure, List<T>>> Function() fetchItems;
 
   SelectionRemoteDataSource(this.fetchItems);
 }
 
 class SelectionPaginatedRemoteDataSource<T> extends SelectionDataSource<T> {
-  final Future<Either<ApiFailure, PaginatedList<T>>> Function({
+  final Future<Either<BaseFailure, PaginatedList<T>>> Function({
     required PaginationDto dto,
     String? query,
   }) fetchItems;

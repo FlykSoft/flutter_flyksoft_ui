@@ -28,6 +28,14 @@ class MultipleSelectionListWidget<T> extends MultipleSelectionLocalWidget<T> {
 class _MultipleSelectionListWidgetState<T>
     extends State<MultipleSelectionListWidget<T>>
     with MultipleSelectionLocalState<T, MultipleSelectionListWidget<T>> {
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(final BuildContext context) {
     final horizontalPaddingValue =
@@ -43,6 +51,7 @@ class _MultipleSelectionListWidgetState<T>
             ),
             child: AppTextField(
               hintText: FlyksoftUILocalization.of(context).search,
+              controller: _searchController,
               onChanged: (final query) => debouncer.debounce(
                 () => filter(query ?? ''),
               ),

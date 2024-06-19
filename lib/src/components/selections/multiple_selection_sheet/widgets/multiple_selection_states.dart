@@ -94,9 +94,9 @@ mixin MultipleSelectionLocalState<T, W extends MultipleSelectionLocalWidget<T>>
 
 mixin MultipleSelectionRemoteState<T,
     W extends MultipleSelectionRemoteWidget<T>> on State<W> {
-  late Future<Either<ApiFailure, List<T>>> onRemoteFetch;
+  late Future<Either<BaseFailure, List<T>>> onRemoteFetch;
   bool doesNotifiedCount = false;
-  AsyncSnapshot<Either<ApiFailure, List<T>>>? snapshot;
+  AsyncSnapshot<Either<BaseFailure, List<T>>>? snapshot;
 
   @override
   void initState() {

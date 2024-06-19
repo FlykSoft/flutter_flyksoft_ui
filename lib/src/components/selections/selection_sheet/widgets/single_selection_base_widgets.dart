@@ -46,7 +46,7 @@ abstract class SingleSelectionRemoteWidget<T>
   });
 
   final void Function(int count) onFetched;
-  final Future<Either<ApiFailure, List<T>>> Function() onRemoteFetch;
+  final Future<Either<BaseFailure, List<T>>> Function() onRemoteFetch;
 }
 
 abstract class SingleSelectionPaginatedRemoteWidget<T>
@@ -62,7 +62,7 @@ abstract class SingleSelectionPaginatedRemoteWidget<T>
   });
 
   final void Function(int count) onFetched;
-  final Future<Either<ApiFailure, PaginatedList<T>>> Function({
+  final Future<Either<BaseFailure, PaginatedList<T>>> Function({
     required PaginationDto paginationDto,
     String? query,
   }) onRemoteFetch;

@@ -46,7 +46,7 @@ abstract class MultipleSelectionRemoteWidget<T>
     super.key,
   });
 
-  final Future<Either<ApiFailure, List<T>>> Function() onRemoteFetch;
+  final Future<Either<BaseFailure, List<T>>> Function() onRemoteFetch;
   final void Function(int count) onFetched;
 }
 
@@ -63,7 +63,7 @@ abstract class MultipleSelectionPaginatedRemoteWidget<T>
   });
 
   final void Function(int count) onFetched;
-  final Future<Either<ApiFailure, PaginatedList<T>>> Function({
+  final Future<Either<BaseFailure, PaginatedList<T>>> Function({
     required PaginationDto paginationDto,
     String? query,
   }) onRemoteFetch;

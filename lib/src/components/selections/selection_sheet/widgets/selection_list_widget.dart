@@ -24,6 +24,14 @@ class SelectionListWidget<T> extends SingleSelectionLocalWidget<T> {
 
 class _ListWidgetState<T> extends State<SelectionListWidget<T>>
     with SingleSelectionLocalState<T, SelectionListWidget<T>> {
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(final BuildContext context) {
     final horizontalPadding =
@@ -40,6 +48,7 @@ class _ListWidgetState<T> extends State<SelectionListWidget<T>>
             ),
             child: AppTextField(
               hintText: FlyksoftUILocalization.of(context).search,
+              controller: _searchController,
               onChanged: (final query) => debouncer.debounce(
                 () => filter(query ?? ''),
               ),

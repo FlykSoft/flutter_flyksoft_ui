@@ -30,7 +30,7 @@ class _MultipleSelectionRemoteListWidgetState<T>
     with MultipleSelectionRemoteState<T, MultipleSelectionRemoteListWidget<T>> {
   @override
   Widget build(BuildContext context) =>
-      FutureBuilder<Either<ApiFailure, List<T>>>(
+      FutureBuilder<Either<BaseFailure, List<T>>>(
         future: onRemoteFetch,
         builder: (context, snapshot) {
           this.snapshot = snapshot;
