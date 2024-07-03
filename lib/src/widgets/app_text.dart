@@ -2,6 +2,8 @@ import 'dart:ui' as ui show TextHeightBehavior;
 
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/formatter.dart';
+
 class AppText extends StatelessWidget {
   /// This filed defines the content of text widget.
   final String text;
@@ -111,306 +113,326 @@ class AppText extends StatelessWidget {
   /// (semi-transparent grey).
   final Color? selectionColor;
 
+  ///This field adds a currency string to the end of text if true.
+  final String? currencyType;
+
   const AppText(
-    this.text, {
-    this.isRequired = false,
-    this.type,
-    this.style,
-    super.key,
-    this.strutStyle,
-    this.textAlign,
-    this.textDirection,
-    this.locale,
-    this.softWrap,
-    this.overflow,
-    this.textScaleFactor,
-    this.maxLines,
-    this.semanticsLabel,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.selectionColor,
-  });
+      this.text, {
+        this.isRequired = false,
+        this.type,
+        this.style,
+        super.key,
+        this.strutStyle,
+        this.textAlign,
+        this.textDirection,
+        this.locale,
+        this.softWrap,
+        this.overflow,
+        this.textScaleFactor,
+        this.maxLines,
+        this.semanticsLabel,
+        this.textWidthBasis,
+        this.textHeightBehavior,
+        this.selectionColor,
+        this.currencyType,
+      });
 
   factory AppText.bodyLarge(
-    final String text, {
-    final bool isRequired = false,
-    final TextStyle? style,
-    final TextAlign? textAlign,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final bool isRequired = false,
+        final TextStyle? style,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         isRequired: isRequired,
         style: style,
         textAlign: textAlign,
         type: AppTextEnum.bodyLarge,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.bodyMedium(
-    final String text, {
-    final bool isRequired = false,
-    final TextStyle? style,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final bool isRequired = false,
+        final TextStyle? style,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         type: AppTextEnum.bodyMedium,
         textAlign: textAlign,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.bodySmall(
-    final String text, {
-    final TextStyle? style,
-    final bool isRequired = false,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final TextStyle? style,
+        final bool isRequired = false,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         type: AppTextEnum.bodySmall,
         textAlign: textAlign,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.displayLarge(
-    final String text, {
-    final TextStyle? style,
-    final bool isRequired = false,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final TextStyle? style,
+        final bool isRequired = false,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         type: AppTextEnum.displayLarge,
         textAlign: textAlign,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.displayMedium(
-    final String text, {
-    final TextStyle? style,
-    final bool isRequired = false,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final TextStyle? style,
+        final bool isRequired = false,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         type: AppTextEnum.displayMedium,
         textAlign: textAlign,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.displaySmall(
-    final String text, {
-    final TextStyle? style,
-    final bool isRequired = false,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final TextStyle? style,
+        final bool isRequired = false,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         type: AppTextEnum.displaySmall,
         textAlign: textAlign,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.headlineLarge(
-    final String text, {
-    final TextStyle? style,
-    final bool isRequired = false,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final TextStyle? style,
+        final bool isRequired = false,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         type: AppTextEnum.headlineLarge,
         textAlign: textAlign,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.headlineMedium(
-    final String text, {
-    final TextStyle? style,
-    final bool isRequired = false,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final TextStyle? style,
+        final bool isRequired = false,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         type: AppTextEnum.headlineMedium,
         textAlign: textAlign,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.headlineSmall(
-    final String text, {
-    final TextStyle? style,
-    final bool isRequired = false,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final TextStyle? style,
+        final bool isRequired = false,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         type: AppTextEnum.headlineSmall,
         textAlign: textAlign,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.labelLarge(
-    final String text, {
-    final TextStyle? style,
-    final bool isRequired = false,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final TextStyle? style,
+        final bool isRequired = false,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         textAlign: textAlign,
         type: AppTextEnum.labelLarge,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.labelMedium(
-    final String text, {
-    final TextStyle? style,
-    final bool isRequired = false,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final TextStyle? style,
+        final bool isRequired = false,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         type: AppTextEnum.labelMedium,
         textAlign: textAlign,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.labelSmall(
-    final String text, {
-    final TextStyle? style,
-    final bool isRequired = false,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final TextStyle? style,
+        final bool isRequired = false,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         type: AppTextEnum.labelSmall,
         textAlign: textAlign,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.titleSmall(
-    final String text, {
-    final TextStyle? style,
-    final bool isRequired = false,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final TextStyle? style,
+        final bool isRequired = false,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         textAlign: textAlign,
         type: AppTextEnum.titleSmall,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.titleMedium(
-    final String text, {
-    final TextStyle? style,
-    final bool isRequired = false,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final TextStyle? style,
+        final bool isRequired = false,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         type: AppTextEnum.titleMedium,
         textAlign: textAlign,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
 
   factory AppText.titleLarge(
-    final String text, {
-    final TextStyle? style,
-    final bool isRequired = false,
-    final TextAlign? textAlign,
-    final String? currencyType,
-    final int? maxLines,
-    final TextOverflow? overflow,
-  }) =>
+      final String text, {
+        final TextStyle? style,
+        final bool isRequired = false,
+        final TextAlign? textAlign,
+        final String? currencyType,
+        final int? maxLines,
+        final TextOverflow? overflow,
+      }) =>
       AppText(
         text,
         style: style,
         isRequired: isRequired,
         type: AppTextEnum.titleLarge,
         textAlign: textAlign ?? TextAlign.center,
+        currencyType: currencyType,
         maxLines: maxLines,
         overflow: overflow,
       );
@@ -420,8 +442,14 @@ class AppText extends StatelessWidget {
     final TextStyle? finalStyle = style ??
         _getTextStyle(context) ??
         Theme.of(context).textTheme.titleMedium;
+    String formattedPrice = '';
+    if (currencyType != null) {
+      final double price = double.tryParse(text) ?? 0;
+      formattedPrice = currencyType == '\$' ? '$currencyType ${price.toStringAsFixed(2)}'
+          : '$currencyType ${price.toStringAsFixed(2)} ';
+    }
     final child = Text(
-      text,
+      currencyType != null ? formattedPrice : text,
       style: finalStyle,
       key: key,
       maxLines: maxLines,
@@ -432,18 +460,18 @@ class AppText extends StatelessWidget {
 
     return isRequired
         ? Row(
-            children: [
-              child,
-              const SizedBox(
-                width: 2,
-              ),
-              if (isRequired)
-                Text(
-                  '*',
-                  style: finalStyle!.copyWith(color: Colors.red),
-                ),
-            ],
-          )
+      children: [
+        child,
+        const SizedBox(
+          width: 2,
+        ),
+        if (isRequired)
+          Text(
+            '*',
+            style: finalStyle!.copyWith(color: Colors.red),
+          ),
+      ],
+    )
         : child;
   }
 
