@@ -2,7 +2,6 @@ import 'dart:ui' as ui show TextHeightBehavior;
 
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/formatter.dart';
 
 class AppText extends StatelessWidget {
   /// This filed defines the content of text widget.
